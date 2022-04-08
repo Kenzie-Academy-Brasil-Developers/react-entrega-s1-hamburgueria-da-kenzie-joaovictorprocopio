@@ -1,6 +1,13 @@
-function Button({ styleButton, children, onClick }) {
+function Button({ styleButton, children, onClick, idBtn }) {
   return (
-    <button onClick={onClick()} className={styleButton}>
+    <button
+      id={idBtn}
+      onClick={(e) => {
+        onClick(e);
+        console.log(e.target);
+      }}
+      className={styleButton}
+    >
       {children}
     </button>
   );

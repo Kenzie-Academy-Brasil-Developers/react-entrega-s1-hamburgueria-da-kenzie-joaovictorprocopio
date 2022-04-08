@@ -1,7 +1,7 @@
 import Product from "./Product";
 import { useState, useEffect } from "react";
 
-function Productlist({ dataApi, filteredProducts }) {
+function Productlist({ dataApi, filteredProducts, handleClick }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -9,21 +9,22 @@ function Productlist({ dataApi, filteredProducts }) {
       setProducts(filteredProducts);
     } else if (dataApi.length) {
       setProducts(dataApi);
-      //   console.log(products, "lista de produtos");
     }
-  }, []);
+  }, [dataApi, filteredProducts]);
 
   return (
-    <ul>
+    <ul className="App-main-list">
       {products &&
         products.map((item) => {
           return (
             <Product
               linkImg={item.img}
-              categoria={item.name}
+              description={item.name}
               nome={item.name}
               category={item.category}
               preco={item.price}
+              idBtn={item.id}
+              handleClick={handleClick}
               key={item.id}
             />
           );
